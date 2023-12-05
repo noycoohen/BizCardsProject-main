@@ -7,6 +7,7 @@ export const connect = async () => {
   const database = process.env.DATABASE_NAME;
   //const user = process.env.DATABASE_USER;
   //const pass = process.env.DATABASE_PASSWORD;
+  //const pass = process.env.DATABASE_PASSWORD;
 
   const connectionString = `mongodb://${host}:${port}/${database}`;
 
