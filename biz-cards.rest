@@ -1,0 +1,160 @@
+### Post a user:
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+  "name": {
+    "first": "Elii",
+    "middle": "abcd",
+    "last": "Vis"
+  },
+  "phone": "0512345567",
+  "email": "eliii@email.com",
+  "password": "Abc!123Abc",
+  "address": {
+    "state": "IL",
+    "country": "Israel",
+    "city": "Arad",
+    "street": "Shoham",
+    "houseNumber": 5,
+    "zip": 8920435
+  },
+  "isBusiness": true
+}
+
+
+### Login as elvis (ADMIN):
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "ell@email.com",
+  "password": "Abc!123Abc"
+}
+
+### Login as moe (USER):
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "do@email.com",
+  "password": "Abc!123Abc"
+}
+
+ 
+
+
+### Get all users:
+GET http://localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NWY3MGY3NGE0NTVmN2Q2ZmE0MGRhYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMDc1MzkzMn0.H-EJodqNhHINxHoPs3qzTW6-fOzkhVF3qi8SFeIeW6c
+
+
+
+### get user by id without token - 400:
+GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
+
+
+### get user by id with admin token - 200:
+GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NWY3MGY3NGE0NTVmN2Q2ZmE0MGRhYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMDc1Nzg1OH0.xndj28csFxeiMo-EQ6qz7JFEQngMfetvRl0uEAFednA
+
+
+### get user by id with an id of another user (not admin): 401 Unauthorized
+GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im90aGVyQGVtYWlsLmNvbSIsImlkIjoiNjU1ZjgzMTU1NjlhOGVmZWEyZTViNjU4IiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTcwMDc1ODMwNX0.CIQhkEprhpm_ipC8ageajWj2a_o_IPI5shaKTmhuFpg
+
+
+
+### update a user:
+PUT http://localhost:8080/api/v1/users/656f2a2b3b661d98a8d4330a
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbEBlbWFpbC5jb20iLCJpZCI6IjY1NmYyYTJiM2I2NjFkOThhOGQ0MzMwYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3ODYxNTV9.sMs4j_LWZV2cih45f2m4U8ly-Du7v-CZXYMxoOvsqww
+
+{
+  "name": {
+    "first": "Ell12345",
+    "middle": "abcd",
+    "last": "Vis"
+  },
+  "phone": "0512345567",
+  "email": "ell@email.com",
+  "password": "Abc!123Abc",
+  "address": {
+    "state": "IL",
+    "country": "Israel",
+    "city": "Arad",
+    "street": "Shoham",
+    "houseNumber": 5,
+    "zip": 8920435
+  },
+  "isBusiness": true
+}
+
+
+### partial update a user (only isBusiness):
+PATCH http://localhost:8080/api/v1/users/65645f92dde85faea9d3e380
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NjQ1ZjkyZGRlODVmYWVhOWQzZTM4MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDEwNzY4OTV9.XSHs3UIAgz3qTppwdVvs9Ldpq5AbvtLH-pUPOC_CtDg
+
+{
+  "isBusiness": false
+}
+
+### delete a user:
+DELETE http://localhost:8080/api/v1/users/65645f92dde85faea9d3e380
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NjQ1ZjkyZGRlODVmYWVhOWQzZTM4MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDEwNzY4OTV9.XSHs3UIAgz3qTppwdVvs9Ldpq5AbvtLH-pUPOC_CtDg
+
+
+### get all cards:
+GET http://localhost:8080/api/v1/cards
+
+### get my cards:
+GET http://localhost:8080/api/v1/cards/my-cards
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE1MjI1Mzh9.aIE7LZx85Pb7LayoTRbvLNIA2uJf8qTiv0b9PQ73P5c
+
+### get card by id:
+GET http://localhost:8080/api/v1/cards/656b2c81dd1e395fc4941c8f
+
+
+### post a card:
+POST http://localhost:8080/api/v1/cards
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3MTgzNzF9.KOhcVVBEDu63NWAgFGNUtGaaQnGfnokWqKFGYW1Hw_4
+
+{
+  "title": "Marvel",
+  "subtitle": "Software Engineer",
+  "description": "Experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success.",
+  "phone": "050-1234567",
+  "email": "moe@example.com",
+  "web": "http://www.johndoe.com",
+  "address": {
+    "street": "123 Main St",
+    "city": "San Francisco",
+    "state": "California",
+    "zip": "94101",
+    "country": "USA",
+    "houseNumber": "123"
+  },
+  "image": {
+    "url": "https://picsum.photos/200",
+    "alt": "John Doe"
+  }
+}
+
+### update a card:
+PUT http://localhost:8080/api/v1/cards/656dafa3be5bb95e6b622779
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE2ODgwMzl9.7xkJJ4uYNh1-VvHn9jocvTHEvjHBX9oynOgKtT0V9Lw
+
+{
+  "title": "not Marvel"
+}
+
+###like card
+PATCH http://localhost:8080/api/v1/cards/656e29e636dba1fdf3fa2d36
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3MTgzNzF9.KOhcVVBEDu63NWAgFGNUtGaaQnGfnokWqKFGYW1Hw_4
+
+### delete card:
+DELETE http://localhost:8080/api/v1/cards/656dd515b1013ffec51a9511
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvQGVtYWlsLmNvbSIsImlkIjoiNjU2MWQ1NGYyZDYwZjJkNzU4MDNjYzg1IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzAxNjk2OTAwfQ.ofT6K4WZiRqhx_sHKl5vxLYt8euYG9Cr_xKWj69YqiU
