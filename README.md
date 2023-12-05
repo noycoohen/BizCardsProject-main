@@ -3,7 +3,7 @@
 # About the app:
 
 Server-side development for a web application, a website management system that allows business users
-Publish content, edit and delete it.
+Publish content, edit and delete it.skjfsfl
 
 ## Installation
 
