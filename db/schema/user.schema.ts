@@ -5,12 +5,24 @@ import { nameSchema } from "./name.schema";
 import { imageSchema } from "./image.schema";
 
 export const userSchema = new Schema<IUser>({
-  address: {
-    type: addressSchema,
-    required: true,
-  },
   name: {
     type: nameSchema,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+    maxlength: 11,
+  },
+  email: {
+    unique: true,
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 30,
+  },
+  password: {
+    type: String,
     required: true,
   },
   image: {
@@ -20,26 +32,14 @@ export const userSchema = new Schema<IUser>({
       url: "https://cdn-icons-png.flaticon.com/512/6596/6596121.png",
     },
   },
-  email: {
-    unique: true,
-    type: String,
+  address: {
+    type: addressSchema,
     required: true,
-    minlength: 5,
-    maxlength: 30,
   },
   isBusiness: {
     type: Boolean,
     required: false,
     default: false,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-    maxlength: 100,
   },
   isAdmin: {
     type: Boolean,

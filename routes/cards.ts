@@ -6,7 +6,6 @@ import { verifyIsBusiness } from "../middleware/verify-is-business";
 
 import { verifyCardUser } from "../middleware/verify-card-user";
 import { ApplicationError } from "../error/application-error";
-import { any } from "joi";
 
 const router = Router();
 

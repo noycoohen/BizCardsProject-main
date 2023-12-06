@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
   "name": {
-    "first": "Elii",
+    "first": "Ro",
     "middle": "abcd",
     "last": "Vis"
   },
   "phone": "0512345567",
-  "email": "eliii@email.com",
+  "email": "Ro@email.com",
   "password": "Abc!123Abc",
   "address": {
     "state": "IL",

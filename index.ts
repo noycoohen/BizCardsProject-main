@@ -8,6 +8,7 @@ import { configEnv } from "./environments";
 import cors from "cors";
 import chalk from "chalk";
 import path from "path";
+import { initDatabase } from "./db/utils/initDataBase";
 
 configEnv(); //load all the values from .env
 
@@ -38,5 +39,6 @@ app.use(errorHandler);
 const PORT = process.env.EXPRESS_PORT;
 
 app.listen(PORT, () => {
+  initDatabase();
   console.log(chalk.yellow(`App is running on http://localhost:${PORT}`));
 });
