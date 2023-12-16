@@ -27,9 +27,9 @@ app.use(logger);
 // serve the static files in the public directory
 app.use(express.static("public"));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "notFound.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "notFound.html"));
+// });
 
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/cards", cardsRouter);

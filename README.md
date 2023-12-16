@@ -25,13 +25,13 @@ you can run:
 
 ### `npm watch`
 
-- Runs the app with nodemon (NODE_ENV=dev)
+- Runs the app with tsx (NODE_ENV=dev)
 - The page will reload if you make edits
 - The print at the terminal will be yellow with the message:
 
 `App is running on http://localhost:8080`
 
-And if there are no login errors you should see the message painted in bold yellow:
+And if there are no login errors you should see the message painted in bold blue:
 
 `Database Connected`
 

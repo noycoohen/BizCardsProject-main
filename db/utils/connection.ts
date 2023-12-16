@@ -10,12 +10,12 @@ export const connect = async () => {
 
   const connectionString = `mongodb://${host}:${port}/${database}`;
 
-  console.log(chalk.blueBright(connectionString));
+  console.log(chalk.blueBright.bgWhiteBright(connectionString));
   //const connectionString = `mongodb://user:password@host:port/database`;
 
   await mongoose.connect(connectionString);
 
   //TODO: await seed();
 
-  console.log(chalk.yellow.bold("Database Connected"));
+  console.log(chalk.blueBright.bold("Database Connected"));
 };

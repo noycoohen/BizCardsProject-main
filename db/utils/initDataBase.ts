@@ -12,7 +12,7 @@ export const initDatabase = async () => {
         },
         phone: "0527345882",
         email: "Admin@example.com",
-        password: "Ab1234!",
+        password: "Ab1234Ab!",
         image: {
           url: "https://example.com/images/johndoe.jpg",
           alt: "Profile picture of John Doe",
@@ -140,63 +140,36 @@ export const initDatabase = async () => {
       },
     ];
 
-    // const savedUsers = await Promise.all(
-    //   usersData.map(async (userData) => {
-    //     const user = new User(userData);
-    //     return userService.saveUser(user);
-    //   })
-    // );
+    // Check if users data exists
+    const usersCount = await User.countDocuments({});
+    if (usersCount === 0) {
+      // Users data not found, create and save to the database
+      await User.insertMany(usersData);
+      console.log("Users data created and saved.");
+    } else {
+      console.log("Users data already exists, not saving.");
+    }
+    const firstUser = await User.findOne({});
+    if (firstUser) {
+      const userId = firstUser._id;
 
-    // const userId = savedUsers[0]._id;
-    // const savedCards = await Promise.all(
-    //   cardData.map(async (card) => {
-    //     return Card.create({ ...card, user_id: userId });
-    //   })
-    // );
-    const savedUsers = await Promise.all(
-      usersData.map(async (userData) => {
-        // Check if any user with the same data already exists
-        const existingUser = await User.findOne({
-          email: userData.email, // Adjust this based on your user identification criteria
-        });
-
-        if (existingUser) {
-          // User already exists, return existing user
-          return existingUser;
-        } else {
-          // User doesn't exist, create and save
-          const user = new User(userData);
-          return userService.saveUser(user);
-        }
-      })
-    );
-
-    // Get the ID of the first saved user (you might want to adjust this logic based on your needs)
-    const userId = savedUsers[0]._id;
-
-    // Save or find cards associated with the user
-    const savedCards = await Promise.all(
-      cardData.map(async (card) => {
-        // Check if any card with the same data already exists for the user
-        const existingCard = await Card.findOne({
-          title: card.title, // Adjust this based on your card identification criteria
+      // Check if cards for the user with userId exist
+      const cardsCount = await Card.countDocuments({ user_id: userId });
+      if (cardsCount === 0) {
+        // Cards for the user with userId not found, create and save to the database
+        const cardsWithUserId = cardData.map((card) => ({
+          ...card,
           user_id: userId,
-        });
-
-        if (existingCard) {
-          // Card already exists, return existing card
-          return existingCard;
-        } else {
-          // Card doesn't exist, create and save
-          const newCard = new Card({ ...card, user_id: userId });
-          return newCard.save();
-        }
-      })
-    );
-
-    return { savedUsers, savedCards };
-  } catch (e) {
-    console.error(e);
-    throw e;
+        }));
+        await Card.insertMany(cardsWithUserId);
+        console.log("Card data for the user with userId created and saved.");
+      } else {
+        console.log(
+          "Card data for the user with userId already exists, not saving."
+        );
+      }
+    }
+  } catch (error) {
+    console.error("Error initializing the database:", error);
   }
 };
