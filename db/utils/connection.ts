@@ -15,7 +15,5 @@ export const connect = async () => {
 
   await mongoose.connect(connectionString);
 
-  //TODO: await seed();
-
   console.log(chalk.blueBright.bold("Database Connected"));
 };

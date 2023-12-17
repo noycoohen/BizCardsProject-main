@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
   "name": {
-    "first": "Ro",
+    "first": "NOY",
     "middle": "abcd",
-    "last": "Vis"
+    "last": "Coh"
   },
   "phone": "0512345567",
-  "email": "Ro@email.com",
+  "email": "noy@email.com",
   "password": "Abc!123Abc",
   "address": {
     "state": "IL",
@@ -21,9 +21,17 @@ Content-Type: application/json
   },
   "isBusiness": true
 }
+### Login as Noy(business user)
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "noy@email.com",
+  "password": "Abc!123Abc"
+}
 
 
-### Login as (ADMIN):
+### Login as Admin:
 POST http://localhost:8080/api/v1/users/login
 Content-Type: application/json
 
@@ -32,52 +40,59 @@ Content-Type: application/json
   "password": "Ab1234Ab!"
 }
 
-### Login as moe (USER):
+### Login as Business:
 POST http://localhost:8080/api/v1/users/login
 Content-Type: application/json
 
 {
-  "email": "do@email.com",
-  "password": "Abc!123Abc"
+  "email": "Business@example.com",
+  "password": "Ab1234Ab!"
+}
+
+### Login as Regular:
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "Regular@example.com",
+  "password": "Ab1234Ab!"
 }
 
  
-
-
 ### Get all users:
 GET http://localhost:8080/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NWY3MGY3NGE0NTVmN2Q2ZmE0MGRhYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMDc1MzkzMn0.H-EJodqNhHINxHoPs3qzTW6-fOzkhVF3qi8SFeIeW6c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsYXJAZXhhbXBsZS5jb20iLCJpZCI6IjY1N2ViYjRjYzEwNTY0N2VkOGM2MGFhNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDU1NjJ9.yV3m5ovqCMfxGwq9hDUQIPH2v6nibq4ui8cou-Ocfbs
 
 
 
 ### get user by id without token - 400:
-GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
+GET http://localhost:8080/api/v1/users/657ebb4cc105647ed8c60a9e
 
 
 ### get user by id with admin token - 200:
-GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NWY3MGY3NGE0NTVmN2Q2ZmE0MGRhYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMDc1Nzg1OH0.xndj28csFxeiMo-EQ6qz7JFEQngMfetvRl0uEAFednA
+GET http://localhost:8080/api/v1/users/657ebb4cc105647ed8c60a9e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NTdlYmI0YmMxMDU2NDdlZDhjNjBhOTYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDI4MDU2NjF9.6B2b0UZnktW2twLUDZdPAnwec9BRR2figujqwFyOBAQ
 
 
 ### get user by id with an id of another user (not admin): 401 Unauthorized
-GET http://localhost:8080/api/v1/users/655f7e5e569a8efea2e5b649
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im90aGVyQGVtYWlsLmNvbSIsImlkIjoiNjU1ZjgzMTU1NjlhOGVmZWEyZTViNjU4IiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTcwMDc1ODMwNX0.CIQhkEprhpm_ipC8ageajWj2a_o_IPI5shaKTmhuFpg
+GET http://localhost:8080/api/v1/users/657ebb4cc105647ed8c60a9e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsYXJAZXhhbXBsZS5jb20iLCJpZCI6IjY1N2ViYjRjYzEwNTY0N2VkOGM2MGFhNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDU3NDZ9.DcHF_4jLPHc8zFWWGvOi0uxEIBmrfxUYNNVSz5mdqjI
 
 
 
 ### update a user:
-PUT http://localhost:8080/api/v1/users/656f2a2b3b661d98a8d4330a
+PUT http://localhost:8080/api/v1/users/657ec2c6c105647ed8c60ad1
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbEBlbWFpbC5jb20iLCJpZCI6IjY1NmYyYTJiM2I2NjFkOThhOGQ0MzMwYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3ODYxNTV9.sMs4j_LWZV2cih45f2m4U8ly-Du7v-CZXYMxoOvsqww
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDY0MzJ9.fQxxhTxbA29BAyUusrsXv1rOhN2DQHx5FTWtPy1BqQ0
 
 {
   "name": {
-    "first": "Ell12345",
-    "middle": "abcd",
-    "last": "Vis"
+    "first": "NOY",
+    "middle": "a",
+    "last": "Cohen"
   },
   "phone": "0512345567",
-  "email": "ell@email.com",
+  "email": "noy@email.com",
   "password": "Abc!123Abc",
   "address": {
     "state": "IL",
@@ -92,12 +107,12 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbEBlb
 
 
 ### partial update a user (only isBusiness):
-PATCH http://localhost:8080/api/v1/users/65645f92dde85faea9d3e380
+PATCH http://localhost:8080/api/v1/users/657ec2c6c105647ed8c60ad1
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NjQ1ZjkyZGRlODVmYWVhOWQzZTM4MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDEwNzY4OTV9.XSHs3UIAgz3qTppwdVvs9Ldpq5AbvtLH-pUPOC_CtDg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDY3OTB9.dDBxl9alM7QLa1gIuQYjKrV56nfMDvEI37jd3GgRQzc
 
 {
-  "isBusiness": false
+  "isBusiness": true
 }
 
 ### delete a user:
@@ -110,16 +125,16 @@ GET http://localhost:8080/api/v1/cards
 
 ### get my cards:
 GET http://localhost:8080/api/v1/cards/my-cards
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE1MjI1Mzh9.aIE7LZx85Pb7LayoTRbvLNIA2uJf8qTiv0b9PQ73P5c
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NTdlYmI0YmMxMDU2NDdlZDhjNjBhOTYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDI4MTIyNzF9.XjmFKYicKFyGhWEIBG1zrVqhW20eZW3_7u5_yVf8HAU
 
 ### get card by id:
-GET http://localhost:8080/api/v1/cards/656b2c81dd1e395fc4941c8f
+GET http://localhost:8080/api/v1/cards/657ebb4cc105647ed8c60aac
 
 
 ### post a card:
 POST http://localhost:8080/api/v1/cards
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3MTgzNzF9.KOhcVVBEDu63NWAgFGNUtGaaQnGfnokWqKFGYW1Hw_4
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MTMxNTl9.nJtS2hYunrMWgHDyGY51z2IQG-gbu8rbAi1Ye6d4_bk
 
 {
   "title": "Marvel",
@@ -143,18 +158,18 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc
 }
 
 ### update a card:
-PUT http://localhost:8080/api/v1/cards/656dafa3be5bb95e6b622779
+PUT http://localhost:8080/api/v1/cards/657eddf8704b3a28125d95cf
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE2ODgwMzl9.7xkJJ4uYNh1-VvHn9jocvTHEvjHBX9oynOgKtT0V9Lw
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MTQ2NjZ9.lXfcu7NedSCP8vzeRnl-csI4jt3B7HaoxVSJBaGe4Eg
 
 {
   "title": "not Marvel"
 }
 
 ###like card
-PATCH http://localhost:8080/api/v1/cards/656e29e636dba1fdf3fa2d36
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NmIyYzVlZGQxZTM5NWZjNDk0MWM4NyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDE3MTgzNzF9.KOhcVVBEDu63NWAgFGNUtGaaQnGfnokWqKFGYW1Hw_4
+PATCH http://localhost:8080/api/v1/cards/657eddf8704b3a28125d95cf
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkJ1c2luZXNzQGV4YW1wbGUuY29tIiwiaWQiOiI2NTdlYmI0Y2MxMDU2NDdlZDhjNjBhOWUiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzAyODE1MzE0fQ.OaHJxCrrCfQBkqlQgSF1RMCLZftR8ETsy5LUdnR63r0
 
 ### delete card:
-DELETE http://localhost:8080/api/v1/cards/656dd515b1013ffec51a9511
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvQGVtYWlsLmNvbSIsImlkIjoiNjU2MWQ1NGYyZDYwZjJkNzU4MDNjYzg1IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzAxNjk2OTAwfQ.ofT6K4WZiRqhx_sHKl5vxLYt8euYG9Cr_xKWj69YqiU
+DELETE http://localhost:8080/api/v1/cards/657ee82148740f7b1ceae353
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsYXJAZXhhbXBsZS5jb20iLCJpZCI6IjY1N2ViYjRjYzEwNTY0N2VkOGM2MGFhNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MTU3OTV9.SEpURCbRN_mifH6gVz137JkKFE55-ex7u8QEYJalcDg

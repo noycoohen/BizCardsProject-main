@@ -29,7 +29,7 @@ export const verifyIsBusiness: RequestHandler = async (req, res, next) => {
     if (user?.isBusiness === true) {
       next();
     } else {
-      next(new ApplicationError(403, "You are not a business"));
+      next(new ApplicationError(403, "You are not a business user"));
     }
   } catch (e) {
     next(e);

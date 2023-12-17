@@ -6,6 +6,7 @@ import { verifyIsBusiness } from "../middleware/verify-is-business";
 
 import { verifyCardUser } from "../middleware/verify-card-user";
 import { ApplicationError } from "../error/application-error";
+import { User } from "../db/model/user.model";
 
 const router = Router();
 
@@ -25,6 +26,9 @@ router.get("/my-cards", verifyToken, async (req, res, next) => {
     const userId = req.user?.id;
 
     const cards = await Card.find({ user_id: userId });
+    if (cards.length === 0) {
+      return res.status(404).json({ message: `Cards not found` });
+    }
     res.json(cards);
   } catch (e) {
     next(e);
@@ -100,8 +104,14 @@ router.put("/:id", verifyIsBusiness, async (req, res, next) => {
 router.patch("/:id", verifyToken, async (req, res, next) => {
   const cardId = req.params.id;
   const user = req.user;
+  const userId = req.user?.id;
 
   try {
+    const existingUser = await User.findById(userId);
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     const card = await Card.findById(cardId);
     if (card && user) {
       const index = card.likes.indexOf(user.id);
@@ -117,28 +127,6 @@ router.patch("/:id", verifyToken, async (req, res, next) => {
   } catch (e) {
     return res.status(400).json(e);
   }
-  // try {
-  //   const cardId = req.params.id;
-  //   const userId = req.user!.id;
-
-  //   const card = await Card.findById(cardId);
-  //   if (!card)
-  //     throw new ApplicationError(400, `card with id: ${cardId} Not found`);
-
-  //   const cardLikes = card.likes.find((id) => id === userId);
-
-  //   if (!cardLikes) {
-  //     card.likes.push(userId);
-  //     const cardFromDB = await card.save();
-  //     return cardFromDB;
-  //   } else {
-  //     card.likes = card.likes.filter((id) => id !== userId);
-  //   }
-  //   const cardFromDB = await card.save();
-  //   return cardFromDB;
-  // } catch (e) {
-  //   res.status(404).json({ message: e });
-  // }
 });
 
 //Delete card

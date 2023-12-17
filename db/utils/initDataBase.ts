@@ -8,6 +8,7 @@ export const initDatabase = async () => {
       {
         name: {
           first: "admin",
+          middle: "",
           last: "user",
         },
         phone: "0527345882",
@@ -20,10 +21,10 @@ export const initDatabase = async () => {
         address: {
           city: "New York",
           country: "USA",
-          houseNumber: "123",
+          houseNumber: 123,
           state: "NY",
           street: "Main St",
-          zip: "34555",
+          zip: 34555,
         },
         isBusiness: true,
         isAdmin: true,
@@ -31,6 +32,7 @@ export const initDatabase = async () => {
       {
         name: {
           first: "Business",
+          middle: "",
           last: "user",
         },
         phone: "0527345883",
@@ -43,16 +45,17 @@ export const initDatabase = async () => {
         address: {
           city: "New York",
           country: "USA",
-          houseNumber: "123",
+          houseNumber: 123,
           state: "NY",
           street: "Main St",
-          zip: "34555",
+          zip: 34555,
         },
         isBusiness: true,
       },
       {
         name: {
           first: "Regular",
+          middle: "",
           last: "user",
         },
         phone: "0527345884",
@@ -65,10 +68,10 @@ export const initDatabase = async () => {
         address: {
           city: "New York",
           country: "USA",
-          houseNumber: "123",
+          houseNumber: 123,
           state: "NY",
           street: "Main St",
-          zip: "34555",
+          zip: 34555,
         },
         isBusiness: false,
       },
@@ -144,11 +147,15 @@ export const initDatabase = async () => {
     const usersCount = await User.countDocuments({});
     if (usersCount === 0) {
       // Users data not found, create and save to the database
-      await User.insertMany(usersData);
+      for (const userData of usersData) {
+        await userService.saveUser(userData);
+      }
+
       console.log("Users data created and saved.");
     } else {
       console.log("Users data already exists, not saving.");
     }
+
     const firstUser = await User.findOne({});
     if (firstUser) {
       const userId = firstUser._id;

@@ -3,6 +3,7 @@ import { ApplicationError } from "../error/application-error";
 import jwt from "jsonwebtoken";
 import { RequestUser } from "../@types/express";
 import { Card } from "../db/model/card.model";
+import { User } from "../db/model/user.model";
 
 export const verifyCardUser: RequestHandler = async (req, res, next) => {
   //get the Auth header:
@@ -28,6 +29,10 @@ export const verifyCardUser: RequestHandler = async (req, res, next) => {
     const userId = req.user?.id;
     const cardId = req.params.id;
     const existingCard = await Card.findById(cardId);
+    const existingUser = await User.findById(userId);
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
     if (req.user?.isAdmin) {
       return next();

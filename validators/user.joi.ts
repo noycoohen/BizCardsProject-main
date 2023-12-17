@@ -10,7 +10,7 @@ export const joiUserSchema = Joi.object<IUser>({
   phone: Joi.string().pattern(patterns.phone).min(9).max(11).required(),
   name: Joi.object<IName>({
     first: Joi.string().min(2).max(256).required(),
-    middle: Joi.string().min(2).max(256),
+    middle: Joi.string().min(0).max(256),
     last: Joi.string().min(2).max(256).required(),
   }),
   address: Joi.object<IAddress>({
