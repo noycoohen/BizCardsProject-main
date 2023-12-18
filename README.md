@@ -55,7 +55,7 @@ In the request body you will need to provide an object with the following keys a
 | ---------- | ------- | ----------- | ------ | --- | --- | -------- |
 | name       | object  |             |        |     |     | required |
 |            |         | first       | string | 2   | 256 | required |
-|            |         | middle      | string | 2   | 256 |          |
+|            |         | middle      | string | 0   | 256 |          |
 |            |         | last        | string | 2   | 256 | required |
 | phone      | string  |             |        | 9   | 11  | required |
 | email      | string  |             |        | 5   | 30  | required |
