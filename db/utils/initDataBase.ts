@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { userService } from "../../service/user.service";
 import { Card } from "../model/card.model";
 import { User } from "../model/user.model";
@@ -151,9 +152,9 @@ export const initDatabase = async () => {
         await userService.saveUser(userData);
       }
 
-      console.log("Users data created and saved.");
+      console.log(chalk.greenBright("Users data created and saved."));
     } else {
-      console.log("Users data already exists, not saving.");
+      console.log(chalk.redBright("Users data already exists, not saving."));
     }
 
     const firstUser = await User.findOne({});
@@ -169,10 +170,16 @@ export const initDatabase = async () => {
           user_id: userId,
         }));
         await Card.insertMany(cardsWithUserId);
-        console.log("Card data for the user with userId created and saved.");
+        console.log(
+          chalk.greenBright(
+            "Card data for the user with userId created and saved."
+          )
+        );
       } else {
         console.log(
-          "Card data for the user with userId already exists, not saving."
+          chalk.redBright(
+            "Card data for the user with userId already exists, not saving."
+          )
         );
       }
     }

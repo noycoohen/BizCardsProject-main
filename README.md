@@ -23,7 +23,7 @@ you can run:
 - The page will not reload if you make edits.
 - You must have a mongoDB Atlas Cluster
 
-### `npm watch`
+### `pnpm watch`
 
 - Runs the app with tsx (NODE_ENV=dev)
 - The page will reload if you make edits

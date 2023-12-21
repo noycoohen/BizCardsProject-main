@@ -105,11 +105,6 @@ router.delete("/:id", verifyUserOrAdmin, async (req, res, next) => {
     const deletedUser = await User.findByIdAndDelete(id);
     if (!deletedUser) {
       return res.status(404).json({ message: `user with id: ${id} Not found` });
-      // console.log(
-      //   chalk.red(
-      //     "Could not delete this user because a user with this id cannot be found in the database"
-      //   )
-      // );
     }
     res.json({ message: "delete success", deletedUser });
   } catch (e) {

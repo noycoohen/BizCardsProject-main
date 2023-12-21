@@ -6,7 +6,3 @@ export class ApplicationError extends Error {
     this.status = status;
   }
 }
-
-// const e = new ApplicationError(200, "Good Evening");
-// if (e instanceof Error) {
-// }

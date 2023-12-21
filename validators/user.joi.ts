@@ -3,7 +3,6 @@ import { IAddress, IImage, IName, IUser } from "../db/types/db";
 import { patterns } from "./regex-patterns";
 
 export const joiUserSchema = Joi.object<IUser>({
-  //rules for validation
   email: Joi.string().email().min(5).max(30).required(),
   password: Joi.string().pattern(patterns.password).min(7).required(),
   isBusiness: Joi.boolean().required(),

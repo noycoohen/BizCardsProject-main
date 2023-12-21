@@ -10,7 +10,7 @@ import chalk from "chalk";
 import path from "path";
 import { initDatabase } from "./db/utils/initDataBase";
 
-configEnv(); //load all the values from .env
+configEnv();
 
 connect();
 const app = express();
@@ -20,7 +20,7 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
-//add an express middleware that uses JSON.parse(body)
+
 app.use(express.json());
 app.use(logger);
 

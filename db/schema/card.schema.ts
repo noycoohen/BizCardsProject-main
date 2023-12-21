@@ -10,7 +10,7 @@ export const cardSchema = new Schema<ICard>({
   phone: { type: String, required: true, minlength: 9, maxlength: 11 },
   email: { type: String, required: true, minlength: 5, maxlength: 30 },
   web: { type: String, required: false, minlength: 14, maxlength: 50 },
-  //TODO: talk to yehonatan about maxLength to all strings
+
   image: { type: imageSchema, required: true },
   address: { type: addressSchema, required: true },
   bizNumber: {
