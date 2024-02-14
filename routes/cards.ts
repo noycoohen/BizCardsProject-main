@@ -7,6 +7,7 @@ import { verifyIsBusiness } from "../middleware/verify-is-business";
 import { verifyCardUser } from "../middleware/verify-card-user";
 import { ApplicationError } from "../error/application-error";
 import { User } from "../db/model/user.model";
+import { verifyAdmin } from "../middleware/verify-admin";
 
 const router = Router();
 
@@ -51,7 +52,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //Post a card
-router.post("/", verifyIsBusiness, validateCard, async (req, res, next) => {
+router.post("/", verifyAdmin, validateCard, async (req, res, next) => {
   try {
     const userId = req.user?.id;
     const card = await Card.create({ ...req.body, user_id: userId });
@@ -130,7 +131,7 @@ router.patch("/:id", verifyToken, async (req, res, next) => {
 });
 
 //Delete card
-router.delete("/:id", verifyCardUser, async (req, res, next) => {
+router.delete("/:id", verifyAdmin, async (req, res, next) => {
   try {
     const cardId = req.params.id;
     const deleteCard = await Card.findByIdAndDelete(cardId);

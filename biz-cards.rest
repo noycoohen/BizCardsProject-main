@@ -3,30 +3,16 @@ POST http://localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-  "name": {
-    "first": "NOY",
-    "middle": "abcd",
-    "last": "Coh"
-  },
-  "phone": "0512345567",
-  "email": "noy@email.com",
-  "password": "Abc!123Abc",
-  "address": {
-    "state": "IL",
-    "country": "Israel",
-    "city": "Arad",
-    "street": "Shoham",
-    "houseNumber": 5,
-    "zip": 8920435
-  },
-  "isBusiness": true
+  "name": "Admin",
+  "email": "Admin@example.com",
+  "password": "Abc!123Abc"
 }
-### Login as Noy(business user)
+### Login as Noy(register user)
 POST http://localhost:8080/api/v1/users/login
 Content-Type: application/json
 
 {
-  "email": "noy@email.com",
+  "email": "noyy@email.com",
   "password": "Abc!123Abc"
 }
 
@@ -37,31 +23,12 @@ Content-Type: application/json
 
 {
   "email": "Admin@example.com",
-  "password": "Ab1234Ab!"
+  "password": "Abc!123Abc"
 }
-
-### Login as Business:
-POST http://localhost:8080/api/v1/users/login
-Content-Type: application/json
-
-{
-  "email": "Business@example.com",
-  "password": "Ab1234Ab!"
-}
-
-### Login as Regular:
-POST http://localhost:8080/api/v1/users/login
-Content-Type: application/json
-
-{
-  "email": "Regular@example.com",
-  "password": "Ab1234Ab!"
-}
-
  
 ### Get all users:
 GET http://localhost:8080/api/v1/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsYXJAZXhhbXBsZS5jb20iLCJpZCI6IjY1N2ViYjRjYzEwNTY0N2VkOGM2MGFhNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDU1NjJ9.yV3m5ovqCMfxGwq9hDUQIPH2v6nibq4ui8cou-Ocfbs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NWNiYTUwOGNiNGM5MWUwZTBjM2FkMjciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDc4NDQ5ODR9.eqLidaa_zWWtweQEhzi3Axh3u_g5mr1ZxF-JudbtYoQ
 
 
 
@@ -81,43 +48,31 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsY
 
 
 ### update a user:
-PUT http://localhost:8080/api/v1/users/657ec2c6c105647ed8c60ad1
+PUT http://localhost:8080/api/v1/users/65cba399cb4c91e0e0c3ad24
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDY0MzJ9.fQxxhTxbA29BAyUusrsXv1rOhN2DQHx5FTWtPy1BqQ0
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veXlAZW1haWwuY29tIiwiaWQiOiI2NWNiYTM5OWNiNGM5MWUwZTBjM2FkMjQiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzA3OTMwNzA3fQ.UYHeaNUt7wYYOuEMamRLGmJ4bI8pnzS0QCaj4sL1beo
 
 {
-  "name": {
-    "first": "NOY",
-    "middle": "a",
-    "last": "Cohen"
-  },
-  "phone": "0512345567",
-  "email": "noy@email.com",
-  "password": "Abc!123Abc",
-  "address": {
-    "state": "IL",
-    "country": "Israel",
-    "city": "Arad",
-    "street": "Shoham",
-    "houseNumber": 5,
-    "zip": 8920435
-  },
-  "isBusiness": true
+  
+  "name": "kiara",
+  "email": "noyy@email.com",
+  "password": "Abc!123Abc"
+
 }
 
 
 ### partial update a user (only isBusiness):
-PATCH http://localhost:8080/api/v1/users/657ec2c6c105647ed8c60ad1
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDY3OTB9.dDBxl9alM7QLa1gIuQYjKrV56nfMDvEI37jd3GgRQzc
+# PATCH http://localhost:8080/api/v1/users/657ec2c6c105647ed8c60ad1
+# Content-Type: application/json
+# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MDY3OTB9.dDBxl9alM7QLa1gIuQYjKrV56nfMDvEI37jd3GgRQzc
 
-{
-  "isBusiness": true
-}
+# {
+#   "isBusiness": true
+# }
 
 ### delete a user:
-DELETE http://localhost:8080/api/v1/users/65645f92dde85faea9d3e380
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbHZpc0BlbWFpbC5jb20iLCJpZCI6IjY1NjQ1ZjkyZGRlODVmYWVhOWQzZTM4MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDEwNzY4OTV9.XSHs3UIAgz3qTppwdVvs9Ldpq5AbvtLH-pUPOC_CtDg
+DELETE http://localhost:8080/api/v1/users/65c5ef166cd1182384efccc1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NWNiYTUwOGNiNGM5MWUwZTBjM2FkMjciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDc5MzEyODh9.hoaXs_aWVhb2jiP0K1DAkRngkRe77BNYX_A5BcZlMYQ
 
 
 ### get all cards:
@@ -134,27 +89,16 @@ GET http://localhost:8080/api/v1/cards/657ebb4cc105647ed8c60aac
 ### post a card:
 POST http://localhost:8080/api/v1/cards
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5veUBlbWFpbC5jb20iLCJpZCI6IjY1N2VjMmM2YzEwNTY0N2VkOGM2MGFkMSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MTMxNTl9.nJtS2hYunrMWgHDyGY51z2IQG-gbu8rbAi1Ye6d4_bk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NWNiYTUwOGNiNGM5MWUwZTBjM2FkMjciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDc4NDQ5ODR9.eqLidaa_zWWtweQEhzi3Axh3u_g5mr1ZxF-JudbtYoQ
 
 {
-  "title": "Marvel",
-  "subtitle": "Software Engineer",
+  "title": "product 1",
   "description": "Experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success.",
-  "phone": "050-1234567",
-  "email": "moe@example.com",
-  "web": "http://www.johndoe.com",
-  "address": {
-    "street": "123 Main St",
-    "city": "San Francisco",
-    "state": "California",
-    "zip": "94101",
-    "country": "USA",
-    "houseNumber": "123"
-  },
   "image": {
     "url": "https://picsum.photos/200",
     "alt": "John Doe"
-  }
+  },
+  "price":30
 }
 
 ### update a card:
@@ -171,5 +115,5 @@ PATCH http://localhost:8080/api/v1/cards/657eddf8704b3a28125d95cf
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkJ1c2luZXNzQGV4YW1wbGUuY29tIiwiaWQiOiI2NTdlYmI0Y2MxMDU2NDdlZDhjNjBhOWUiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzAyODE1MzE0fQ.OaHJxCrrCfQBkqlQgSF1RMCLZftR8ETsy5LUdnR63r0
 
 ### delete card:
-DELETE http://localhost:8080/api/v1/cards/657ee82148740f7b1ceae353
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlJlZ3VsYXJAZXhhbXBsZS5jb20iLCJpZCI6IjY1N2ViYjRjYzEwNTY0N2VkOGM2MGFhNCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI4MTU3OTV9.SEpURCbRN_mifH6gVz137JkKFE55-ex7u8QEYJalcDg
+DELETE http://localhost:8080/api/v1/cards/65cbb4bdc49c93e7501f3a06
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGV4YW1wbGUuY29tIiwiaWQiOiI2NWNiYTUwOGNiNGM5MWUwZTBjM2FkMjciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MDc4NDQ5ODR9.eqLidaa_zWWtweQEhzi3Axh3u_g5mr1ZxF-JudbtYoQ

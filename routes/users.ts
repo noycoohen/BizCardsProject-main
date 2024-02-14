@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { User } from "../db/model/user.model";
-import { ILogin, IUser, IUserUpdate } from "../db/types/db";
+import { ILogin, IUser } from "../db/types/db";
 import {
   validateLogin,
   validateUser,
@@ -78,24 +78,24 @@ router.put("/:id", verifyUser, validateUser, async (req, res, next) => {
 });
 
 //Patch user by id:
-router.patch("/:id", verifyUser, validateUserUpdate, async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const body = req.body as IUserUpdate;
+// router.patch("/:id", verifyUser, validateUserUpdate, async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     const body = req.body; //as IUserUpdate;
 
-    const updatedUser = await User.findByIdAndUpdate(id, body, {
-      new: true,
-    });
-    if (!updatedUser) {
-      return res.status(404).json({
-        message: `Could not update this user isBusiness status because a user with this ${id} cannot be found in the database`,
-      });
-    }
-    res.json(updatedUser);
-  } catch (e) {
-    next(e);
-  }
-});
+//     const updatedUser = await User.findByIdAndUpdate(id, body, {
+//       new: true,
+//     });
+//     if (!updatedUser) {
+//       return res.status(404).json({
+//         message: `Could not update this user isBusiness status because a user with this ${id} cannot be found in the database`,
+//       });
+//     }
+//     res.json(updatedUser);
+//   } catch (e) {
+//     next(e);
+//   }
+// });
 
 //Delete user by id:
 router.delete("/:id", verifyUserOrAdmin, async (req, res, next) => {
